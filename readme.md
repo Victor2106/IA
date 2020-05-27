@@ -13,6 +13,7 @@ Utilisation
 
 **Windows** 
 * Ouvrez un terminal et faites `cd [redirection du dossier Lavalink]` puis faites entrer
+* Si java n'est pas reconnu, suivez ce [tutoriel](https://www.it-swarm.dev/fr/java/java-nest-pas-reconnu-comme-une-commande-interne-ou-externe/1072478327/) et changez juste la version par la votre (13)
 * Tapez `java -jar Lavalink.jar`
 * Ensuite démarrez le bot `node ia --shard` 
 

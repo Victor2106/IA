@@ -7,7 +7,7 @@ qualité !
 Utilisation
 ```
 
-* Téléchargez jdk (java) 13 | [Téléchargez sur Linux](https://computingforgeeks.com/install-oracle-java-13-on-ubuntu-debian/)
+* Téléchargez jdk (java) 13 | [Téléchargez sur Linux](https://computingforgeeks.com/install-oracle-java-13-on-ubuntu-debian/) | [Téléchargez sur Windows](https://www.oracle.com/java/technologies/javase-jdk13-downloads.html)
 * Téléchargez la dernière version de [Lavalink](https://github.com/Frederikam/Lavalink/releases) en jar et placez le fichier dans le dossier `utils/Lavalink`
 
 **Windows** 

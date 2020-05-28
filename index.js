@@ -38,7 +38,7 @@ class Ia extends Client {
     launch() {
         this.eventsLoad();
         this.commandsLoad();
-        this.login(this.config.bot.token).then(console.log(["Base-WS"], "Connected to discord")).catch((e) => {
+        this.login(this.config.bot.token).then(() => console.log(["Base-WS"], "Connected to discord")).catch((e) => {
             console.error(["Base-WS"], `Connection error: ${e}`);
             return process.exit(1);
         });

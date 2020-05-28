@@ -33,7 +33,6 @@ module.exports = function (client) {
                         }
                     } catch (exception) {
                         console.error(exception);
-                        return message.channel.send("❌ An error has occurred !");
                     }
                 }
             });

@@ -44,9 +44,9 @@ module.exports = class Help extends Command {
                         icon_url: message.author.displayAvatarURL()
                     }
                 }
-            }).catch((err) => { console.log(message.author.id, err); });
+            }).catch((err) => console.log(message.author.id, err));
         } else {
-            const data = client.commands.get(query.toLowerCase()) || client.commands.get(client.aliases.get(query.toLowerCase()));
+            const data = client.commands.get(query.toLowerCase()) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(query.toLowerCase()));
             if (!data) return message.channel.send(`❌ No command found`);
 
             let aliases = ((data.aliases.length > 0) ? data.aliases.map((a) => `\`${a}\``).join(", ") : "No");

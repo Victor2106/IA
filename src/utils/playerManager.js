@@ -34,8 +34,8 @@ module.exports.getQueue = (queues, guildID) => {
 module.exports.play = (client, msg) => {
     try {
         const queue = this.getQueue(client.config.LAVALINK.QUEUES, msg.guild.id);
-        if (queue.length === 0) return client.manager.leave(msg.guild.id);
-
+        if (queue.length < 1) return client.manager.leave(msg.guild.id);
+        
         const player = client.manager.players.get(msg.guild.id);
         if (!player) return msg.channel.send("❌ I'm not connected in a voice channel!");
 
@@ -48,9 +48,7 @@ module.exports.play = (client, msg) => {
                 player.play(error.track).catch(() => {
                     return msg.channel.send("❌ This music is not available for playback!");
                 });
-            } else {
-                return msg.channel.send("❌ This music is not available for playback!");
-            }
+            } else return msg.channel.send("❌ This music is not available for playback!");
         });
         player.once("end", (data) => {
             if ((data.reason === "REPLACED") || (data.reason === "STOPPED" && queue.length === 0)) return;
@@ -145,7 +143,7 @@ module.exports.addQueue = async(client, msg, track, type) => {
                     collector.on("collect", async (msgCollected) => {
                         let choice = msgCollected.content.split(" ")[0];
                         if (choice.toLowerCase() === "cancel") {
-                            if(queue.length < 1) client.manager.leave(msg.guild.id);
+                            if(queue.length < 1) await client.manager.leave(msg.guild.id);
 
                             return collector.stop("STOPPED");
                         }

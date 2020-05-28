@@ -1,6 +1,6 @@
 # **_IA_**
 
-IA est un bot Musique utilisant discord.js 12 ainsi que Lavalink pour atteindre une belle 
+IA est un bot Musique utilisant discord.js 12 ainsi que Lavalink pour atteindre une bonne 
 qualité !
 
 ```

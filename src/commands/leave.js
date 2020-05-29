@@ -22,6 +22,14 @@ module.exports = class Leave extends Command {
 
 		let queue = getQueue(client.config.LAVALINK.QUEUES, message.guild.id);
 		if (queue.length > 0) queue.splice(0, queue.length);
+		
+		if (client.manager.players.get(message.guild.id)) {
+			const data = client.radio.get(message.guild.id);
+			if (data.status) {
+				client.manager.players.get(message.guild.id).stop();
+				data.status = false;
+			}
+		}
 
 		try {
 			client.manager.leave(message.guild.id);

@@ -48,7 +48,10 @@ module.exports.play = (client, msg) => {
                 player.play(error.track).catch(() => {
                     return msg.channel.send("❌ This music is not available for playback!");
                 });
-            } else return msg.channel.send("❌ This music is not available for playback!");
+            } else {
+              console.error(error);
+              return msg.channel.send("❌ This music is not available for playback!");
+            }
         });
         player.once("end", (data) => {
             if ((data.reason === "REPLACED") || (data.reason === "STOPPED" && queue.length === 0)) return;
@@ -64,11 +67,13 @@ module.exports.play = (client, msg) => {
 module.exports.pushQueue = async(client, data, msg) => {
     let queue = this.getQueue(client.config.LAVALINK.QUEUES, msg.guild.id);
 
-    queue.push({
-        t: data.track,
-        author: msg.author.tag,
-        loop: false,
-        info: {
+    try {
+      if (data.track) {
+        queue.push({
+          t: data.track,
+          author: msg.author.tag,
+          loop: false,
+          info: {
             identifier: data.info.identifier,
             title: data.info.title,
             duration: data.info.length,
@@ -76,8 +81,13 @@ module.exports.pushQueue = async(client, data, msg) => {
             url: data.info.uri,
             stream: data.info.isStream,
             seekable: data.info.isSeekable
-        }
-    });
+          }
+        });
+      }
+    } catch (exception) {
+      console.error(exception);
+      return msg.channel.send("❌ An error has occurred!");
+    }
 };
 
 module.exports.addLinkQueue = async(client, msg, track) => {

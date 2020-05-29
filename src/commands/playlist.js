@@ -1,5 +1,5 @@
 const Command = require("../structure/Command");
-const { addQueue, getRadio } = require("../utils/playerManager");
+const { addQueue, addLinkQueue, getRadio } = require("../utils/playerManager");
 
 module.exports = class Playlist extends Command {
 	constructor() {
@@ -303,8 +303,7 @@ ${client.config.bot.prefix}playlist play <playlist name>\`\`\``);
 						name: _item.match(/(?:https?:\/\/)?(?:(?:m|www)\.)?youtu(?:be(?:-nocookie)?(?:\.googleapis)?\.(?:fr|com)\S*)?(?:[&?](?:v|list)=|\/(?:v|e(?:mbed)?|u\/1)\/|\.be\/)([\w-]+)/) ? "ytlink" : "ytsearch",
 						now: true
 					};
-
-					await addQueue(client, message, _item, type);
+					type.name === "ytlink" ? await addLinkQueue(client, message, _item) : await addQueue(client, message, _item, type);
 				});
 				message.channel.send("Playing your `" + playlist.title + "` playlist, contains " + playlist.tracks.length + " musics");
 			} catch (exception) {

@@ -36,6 +36,7 @@ module.exports.getFluxRadio = (name) => {
 		"radiocontact": "http://radiocontact.ice.infomaniak.ch/radiocontact-mp3-128.mp3",
 		"contactfm": "http://radio-contact.ice.infomaniak.ch/radio-contact-high",
 		"bbc": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio1_mf_p",
-		"classicfm":"http://media-ice.musicradio.com:80/ClassicFMMP3"
+		"classicfm":"http://media-ice.musicradio.com:80/ClassicFMMP3",
+		"mouv":"http://direct.mouv.fr/live/mouv-midfi.mp3"
 	} [name];
 };

@@ -37,7 +37,7 @@ module.exports = class Radio extends Command {
 			},
 			fields: [{
 				name: '<:France:714522839595614218> | **__French stations__**',
-				value: '`nrj`, `virginradio`, `skyrock`, `rtl`, `bfm`, `funradio`, `rfm`, `franceinter`, `francemusique`, `rtl2`, `europe1`, `radiocontact`, `contactfm`'
+				value: '`nrj`, `virginradio`, `skyrock`, `rtl`, `bfm`, `funradio`, `rfm`, `franceinter`, `francemusique`, `rtl2`, `europe1`, `radiocontact`, `contactfm`, `mouv`'
 			}, {
 				name: '<:England:714522799527428107> | **__English stations__**',
 				value: '`bbc`, `classicfm`, `Others soon`'

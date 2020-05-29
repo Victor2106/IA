@@ -5,8 +5,8 @@ module.exports = function (client, guild) {
 		client.guildsEntry.delete(guild.id);
 		console.log(`[guildEntry] Delete configurations for ${guild.name} (ID: ${guild.id})`);
 	}
-
-	const channel = client.channels.cache.get(c => c.id === "569305633967439873");
+	
+	const channel = client.channels.cache.find(c => c.id === "569305633967439873");
 	if(!channel) return;
 
 	channel.send({

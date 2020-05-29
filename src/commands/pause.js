@@ -19,8 +19,8 @@ module.exports = class Pause extends Command {
 		if (!player || !player.playing) return message.channel.send("❌ I'm not connected in a voice channel or I'm not playing!");
 
 		if (client.radio.get(message.guild.id).status) return message.channel.send("⚠ The radio is playing, music queue actions are disabled!");
-
-		if (player.pause === true) return message.channel.send("⚠ The music is already paused!");
+		
+		if (player.paused) return message.channel.send("⚠ The music is already paused!");
 
 		try {
 			player.pause(true);

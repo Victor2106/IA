@@ -1,5 +1,5 @@
 const Command = require("../structure/Command");
-const moment = require("moment");
+const { convertTime } = require("../utils/functions");
 
 module.exports = class Seek extends Command {
 	constructor() {
@@ -27,15 +27,13 @@ module.exports = class Seek extends Command {
 		const time = client.config.LAVALINK.QUEUES[message.guild.id][0].info.duration;
 
 		const query = args.join(' ');
-		if (!query || isNaN(query)) return message.channel.send(`❌ Please, include a number between 1 and ${(time / 1000)} to edit the position.`);
-		else if (query <= 0 || query > (time / 1000)) return message.channel.send(`❌ Please, include a number between 1 and ${(time / 1000)} to edit the position.`);
+		if (!query || isNaN(query)) return message.channel.send(`❌ Please, include a number between 1 and ${(time / 1000)}s to edit the position.`);
+		else if (query <= 0 || query > (time / 1000)) return message.channel.send(`❌ Please, include a number between 1 and ${(time / 1000)}s to edit the position.`);
 
 		try {
-			let duration = moment.duration({ ms: time });
-			let progression = moment.duration({ ms: ((query * 1000) * 1000) });
 			player.seek((query * 1000));
 
-			return message.channel.send(`⏳ The position is now at ${moment(progression / 1000).minutes()}:${moment(progression / 1000).seconds()} / ${duration.minutes()}:${duration.seconds()}`);
+			return message.channel.send(`⏳ The position is now at \`${convertTime(query)} / ${convertTime((time / 1000))}\``);
 		} catch (exception) {
 			console.error(exception);
 			return message.channel.send("❌ An error has occurred!");

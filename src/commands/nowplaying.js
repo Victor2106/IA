@@ -1,6 +1,6 @@
 const Command = require("../structure/Command");
 const { getQueue } = require("../utils/playerManager");
-const moment = require("moment");
+const { convertTime } = require("../utils/functions");
 
 module.exports = class Nowplaying extends Command {
 	constructor() {
@@ -26,8 +26,6 @@ module.exports = class Nowplaying extends Command {
 		if (queue.length === 0) return message.channel.send("❌ The queue is empty!");
 
 		try {
-			let duration = moment.duration({ ms: client.config.LAVALINK.QUEUES[message.guild.id][0].info.duration });
-
 			return message.channel.send({
 				embed: {
 					title: "🎶 Now Playing",
@@ -39,7 +37,7 @@ module.exports = class Nowplaying extends Command {
 					fields: [
 						{
 							name: "\\⌛ Time",
-							value: duration.minutes() + ':' + duration.seconds(),
+							value: convertTime(client.config.LAVALINK.QUEUES[message.guild.id][0].info.duration / 1000),
 							inline: true
 						},
 						{

@@ -32,8 +32,7 @@ module.exports = class Time extends Command {
 			const calcul = Math.round(progressBar.length * ((progression / 1000 / 1000) / (duration / 1000)));
 			progressBar[calcul] = "🔘";
 
-			let time;
-			duration.hours() >= 1 ? time = progressBar.join('') +  ' [`' + duration.hours() + 'h : ' + duration.minutes() + 'm : ' + duration.seconds() + 's `]' : time = '[`' + moment(progression/1000).minutes() + 'm : ' + moment(progression/1000).seconds() + 's `] ' + progressBar.join('') +  ' [`' + duration.minutes() + 'm : ' + duration.seconds() + 's `]';
+			let time = "[`" + (moment(progression / 1000).hours() === 1 ? "0" : moment(progression / 1000).hours()) + ":" + moment(progression / 1000).minutes() + ":" + moment(progression / 1000).seconds() + "`] " + progressBar.join('') +  " [`" + duration.hours() + "h:" + duration.minutes() + "m:" + duration.seconds() + "`]";
 
 			return message.channel.send({
 				embed: {

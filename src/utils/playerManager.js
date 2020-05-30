@@ -112,8 +112,8 @@ module.exports.addLinkQueue = async(client, msg, track) => {
 
         if (queue.length > songs.length) return msg.channel.send(`☑ ${songs.length > 20 ? "__YouTube Limitation:__ 25" : songs.length} music(s) added to the queue!`);
         else msg.channel.send(`☑ ${songs.length > 20 ? "__YouTube Limitation:__ 25" : songs.length} music(s) added to the queue!`);
-
-        if (currentQueue <= 1) return this.play(client, msg);
+        
+        if (currentQueue < 1) return this.play(client, msg);
     } catch (exception) {
         console.error(exception);
         return msg.channel.send("❌ An error has occurred!");

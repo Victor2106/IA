@@ -19,6 +19,7 @@ module.exports = class Leave extends Command {
 
 		const player = client.manager.players.get(message.guild.id);
 		if(!player) return message.channel.send("⚠ I'm not connected in a voice channel!");
+		if (player.manager.voiceStates.get(message.guild.id).channel_id !== message.member.voice.channelID) return message.channel.send("❌ You're not in the same channel as the bot!");
 
 		let queue = getQueue(client.config.LAVALINK.QUEUES, message.guild.id);
 		if (queue.length > 0) queue.splice(0, queue.length);

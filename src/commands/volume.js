@@ -17,6 +17,7 @@ module.exports = class Volume extends Command {
 
 		const player = client.manager.players.get(message.guild.id);
 		if (!player || !player.playing) return message.channel.send("❌ I'm not connected in a voice channel or I'm not playing!");
+		if (player.manager.voiceStates.get(message.guild.id).channel_id !== message.member.voice.channelID) return message.channel.send("❌ You're not in the same channel as the bot!");
 
 		const volume = args.join(' ');
 		if (!volume || isNaN(volume)) return message.channel.send("⚠ Please, include a number between 1 and 100 !");

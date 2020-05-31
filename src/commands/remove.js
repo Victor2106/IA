@@ -18,6 +18,7 @@ module.exports = class Remove extends Command {
 
 		const player = client.manager.players.get(message.guild.id);
 		if (!player || !player.playing) return message.channel.send("❌ I'm not connected in a voice channel or I'm not playing!");
+		if (player.manager.voiceStates.get(message.guild.id).channel_id !== message.member.voice.channelID) return message.channel.send("❌ You're not in the same channel as the bot!");
 
 		const data = client.radio.get(message.guild.id);
 		if (data.status) return message.channel.send("⚠ The radio is playing, music actions are disabled!");

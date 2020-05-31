@@ -18,6 +18,7 @@ module.exports = class Clear extends Command {
 
 		const player = client.manager.players.get(message.guild.id);
 		if (!player) return message.channel.send("❌ I'm not connected in a voice channel!");
+		if (player.manager.voiceStates.get(message.guild.id).channel_id !== message.member.voice.channelID) return message.channel.send("❌ You're not in the same channel as the bot!");
 
 		if (client.radio.get(message.guild.id).status) return message.channel.send("⚠ The radio is playing, music queue actions are disabled!");
 

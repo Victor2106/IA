@@ -18,7 +18,8 @@ module.exports = class Boostbass extends Command {
 
 		const player = client.manager.players.get(message.guild.id);
 		if (!player || !player.playing) return message.channel.send("❌ I'm not connected in a voice channel or I'm not playing!");
-
+		if (player.manager.voiceStates.get(message.guild.id).channel_id !== message.member.voice.channelID) return message.channel.send("❌ You're not in the same channel as the bot!");
+		
 		const gain = args.join(" ");
 
 		let choices = ["off", "low", "medium", "high"];

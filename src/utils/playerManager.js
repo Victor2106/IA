@@ -153,12 +153,14 @@ module.exports.addQueue = async(client, msg, track, type) => {
                     collector.on("collect", async (msgCollected) => {
                         let choice = msgCollected.content.split(" ")[0];
                         if (choice.toLowerCase() === "cancel") {
-                            if(queue.length < 1) await client.manager.leave(msg.guild.id);
+                        	if(queue.length < 1) await client.manager.leave(msg.guild.id);
 
-                            return collector.stop("STOPPED");
+                        	collector.stop("STOPPED");
+                        	return msg.channel.send("✅ Choice successfully cancelled!");
                         }
 
                         let choices = ["1", "2", "3", "4", "5", "cancel"];
+                        if (isNaN(choice)) return;
                         if (!choices.includes(choice)) return msg.channel.send("❌ This choice is unavailable!");
 
                         let song = songs[(choice - 1)];

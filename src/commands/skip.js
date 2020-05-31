@@ -1,4 +1,5 @@
 const Command = require("../structure/Command");
+const { getQueue } = require("../utils/playerManager");
 
 module.exports = class Skip extends Command {
 	constructor() {
@@ -22,7 +23,10 @@ module.exports = class Skip extends Command {
 		const data = client.radio.get(message.guild.id);
 		if (data.status) return message.channel.send("⚠ The radio is currently playing, the music queue is disabled!");
 
-		if(player.paused) player.pause(false);
+		if (player.paused) player.pause(false);
+		
+		const queue = getQueue(client.config.LAVALINK.QUEUES, message.guild.id);
+		if (queue.length <= 1) return message.channel.send("❌ I can't skip the music, there's only one music in the queue.");
 
 		message.channel.send("⏩ Skipping ...").then(() => {
 			try {

@@ -8,7 +8,7 @@ module.exports = class Playlist extends Command {
 			category: "music",
 			aliases: [],
 			description: "The command allows you to create a custom playlist",
-			usage: "{{prefix}}playlist new <name of the playlist>\\ni!playlist add <name of the playlist> <music name>\\ni!playlist remove <name of the playlist> <music name>\\ni!playlist allremove <name of the playlist>\\ni!playlist delete <name of the playlist>\\ni!playlist list\\ni!playlist show <name of the playlist>\\ni!playlist play <name of the playlist>",
+			usage: "{{prefix}}playlist new <name of the playlist>\ni!playlist add <name of the playlist> <music name>\ni!playlist remove <name of the playlist> <music name>\ni!playlist allremove <name of the playlist>\ni!playlist delete <name of the playlist>\ni!playlist list\ni!playlist show <name of the playlist>\ni!playlist play <name of the playlist>",
 			cooldown: 10000
 		});
 	}
@@ -24,15 +24,23 @@ module.exports = class Playlist extends Command {
 
 		const track = args.join(" ");
 		if (!track || !choices.includes(args[0].toLowerCase())) {
-			return message.channel.send(`⚠ Please specify an argument !
-\n\`\`\`${client.config.bot.prefix}playlist new <playlist name>
-${client.config.bot.prefix}playlist add <playlist name> <music name>
-${client.config.bot.prefix}playlist remove <playlist name> <music name>
-${client.config.bot.prefix}playlist allremove <playlist name>
-${client.config.bot.prefix}playlist delete <playlist name>
-${client.config.bot.prefix}playlist list
-${client.config.bot.prefix}playlist show <playlist name>
-${client.config.bot.prefix}playlist play <playlist name>\`\`\``);
+			return message.channel.send({
+				embed: {
+					author: {
+						icon_url: client.user.displayAvatarURL(),
+						name: "Commands for playlist"
+					},
+					color: 0x0e91e8,
+					description: `\`\`\`md\n- ${client.config.bot.prefix}playlist new <playlist name>\n` +
+						`- ${client.config.bot.prefix}playlist add <playlist name> <music name>\n` +
+						`- ${client.config.bot.prefix}playlist remove <playlist name> <music name>\n` +
+						`- ${client.config.bot.prefix}playlist allremove <playlist name>\n` +
+						`- ${client.config.bot.prefix}playlist delete <playlist name>\n` +
+						`- ${client.config.bot.prefix}playlist list\n` +
+						`- ${client.config.bot.prefix}playlist show <playlist name>\n` +
+						`- ${client.config.bot.prefix}playlist play <playlist name>\`\`\``
+				}
+			});
 		}
 
 		const data = client.usersEntry.get(message.author.id);

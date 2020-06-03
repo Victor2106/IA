@@ -170,7 +170,7 @@ module.exports.addQueue = async(client, msg, track, type) => {
                         await m.delete();
 
                         if (queue.length >= 50) return msg.channel.send("⚠️ Due to the YouTube limitation, you have reached your maximum number of music files in queue ! (Maximum 50 songs in a queue)");
-                        this.pushQueue(client, song, msg);
+                        await this.pushQueue(client, song, msg);
 
                         if (queue.length > 1) return m.channel.send(`\`${song.info.title}\` - Added by ${msg.author.tag} !`);
                         return this.play(client, m);
@@ -183,7 +183,7 @@ module.exports.addQueue = async(client, msg, track, type) => {
                 if (!song) return msg.channel.send("⚠ No music found!");
 
                 if (queue.length >= 50) return msg.channel.send("⚠️ Due to the YouTube limitation, you have reached your maximum number of music files in queue ! (Maximum 50 songs in a queue)");
-                this.pushQueue(client, song, msg);
+                await this.pushQueue(client, song, msg);
 
                 if (queue.length > 1) return msg.channel.send(`\`${song.info.title}\` - Added by ${msg.author.tag} !`);
 
@@ -219,6 +219,11 @@ module.exports.addReadyRadio = async(client, guild, track) => {
 
         const songs = await this.getSongs(client.manager, track);
         if (!songs) return;
+	
+		if (client.manager.players.get(guild)) {
+			await client.manager.players.get(guild).stop();
+			this.getRadio(client, guild, true);
+		}
 
         const player = client.manager.players.get(guild);
         await player.play(songs[0].track);

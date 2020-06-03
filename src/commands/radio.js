@@ -18,17 +18,6 @@ module.exports = class Radio extends Command {
 		if(!message.member.voice.channel) return message.channel.send("⚠ You must be connected in a voice channel!");
 		if(!message.member.voice.channel.joinable || !message.member.voice.channel.speakable) return message.channel.send("⚠ I don't have the `join permission` or `speak permission` in this channel!");
 
-		if (!client.radio.has(message.guild.id)) getRadio(client, message.guild.id, true);
-
-		const data = client.radio.get(message.guild.id);
-
-		if (client.manager.players.get(message.guild.id)) {
-			if (data.status) {
-				client.manager.players.get(message.guild.id).stop();
-				data.status = true;
-			}
-		}
-
 		const embed = {
 			color: 0x3597a2,
 			author: {
@@ -52,7 +41,17 @@ module.exports = class Radio extends Command {
 
 		const flux = getFluxRadio(track);
 		if (flux === null || flux === undefined) return message.channel.send({ embed });
-
+		
+		if (!client.radio.has(message.guild.id)) getRadio(client, message.guild.id, true);
+		const data = client.radio.get(message.guild.id);
+		
+		if (client.manager.players.get(message.guild.id)) {
+			if (data.status) {
+				client.manager.players.get(message.guild.id).stop();
+				data.status = true;
+			}
+		}
+		
 		const player = client.manager.players.get(message.guild.id);
 
 		try {

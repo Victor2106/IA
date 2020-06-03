@@ -25,7 +25,7 @@ module.exports = class Radio extends Command {
 		if (client.manager.players.get(message.guild.id)) {
 			if (data.status) {
 				client.manager.players.get(message.guild.id).stop();
-				data.status = true
+				data.status = true;
 			}
 		}
 

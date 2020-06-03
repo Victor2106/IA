@@ -47,9 +47,9 @@ module.exports = class Help extends Command {
             }).catch((err) => console.log(message.author.id, err));
         } else {
             const data = client.commands.get(query.toLowerCase()) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(query.toLowerCase()));
-            if (!data) return message.channel.send(`❌ No command found`);
+            if (!data) return message.channel.send("❌ No command found!");
 
-            let aliases = ((data.aliases.length > 0) ? data.aliases.map((a) => `\`${a}\``).join(", ") : "No");
+            let aliases = ((data.aliases.length > 0) ? data.aliases.map((a) => `\`${a}\``).join(", ") : "`None`");
 
             message.channel.send({
                 embed: {
@@ -67,7 +67,7 @@ module.exports = class Help extends Command {
                         value: `\`${data.usage}\``.replace("{{prefix}}", client.config.bot.prefix)
                     }, {
                         name: '\\✨ Aliases',
-                        value: `\`${aliases}\``
+                        value: aliases
                     }]
                 }
             });

@@ -27,7 +27,7 @@ module.exports = class Info extends Command {
 				color: 0x8186dc,
 				fields: [{
 					name: "\\⚙️ **__Config__**",
-					value: `\`\`\`asciidoc\n= PROCESSOR =\nCPU        :: ${(os.loadavg()[0]*os.cpus().length / 100).toFixed(2)}%\nMemory     :: ${Math.round((process.memoryUsage().heapUsed / 1024 / 1024) * 100) / 100}MB\nProcessor  :: (${os.arch()}) ${os.cpus()[0].model}\n            \n= INFORMATIONS =    \nNodejs     :: v${process.versions.node}\nDiscord.js :: v${Discord.version}\nUptime     :: ${convertTime(/*process.uptime()*/203115)}\`\`\``
+					value: `\`\`\`asciidoc\n= PROCESSOR =\nCPU        :: ${(os.loadavg()[0]*os.cpus().length / 100).toFixed(2)}%\nMemory     :: ${Math.round((process.memoryUsage().heapUsed / 1024 / 1024) * 100) / 100}MB\nProcessor  :: (${os.arch()}) ${os.cpus()[0].model}\n            \n= INFORMATIONS =    \nNodejs     :: v${process.versions.node}\nDiscord.js :: v${Discord.version}\nUptime     :: ${convertTime(process.uptime())}\`\`\``
 				}, {
 					name: "\\🎵 Voice channels",
 					value: `Connected to **${client.manager.players.size}** channel(s)`,

@@ -1,23 +1,29 @@
 "use strict";
 
 module.exports.convertTime = (seconds) => {
-	const hours = Math.floor(seconds / 3600);
-	let minutes =  Math.floor((seconds - (hours * 3600)) / 60);
-	seconds = Math.trunc(seconds - (hours * 3600) - (minutes * 60));
+	const days = Math.floor(seconds / 3600 / 24);
+	let hours = Math.floor(seconds / 3600);
+	const hour = Math.floor(hours / 6);
+	let minutes =  Math.floor((seconds - (Math.floor(seconds / 3600) * 3600)) / 60);
+	seconds = Math.trunc(seconds - (Math.floor(seconds / 3600) * 3600) - (minutes * 60));
 	let time = "";
-
-	if (hours) time = `${hours}:`;
-
+	
+	if (days) {
+		time = `${days}d `;
+		hours = hour;
+		if (hours) time += `${hour}:`;
+	} else if (hours) time += `${hours}:`;
+	
 	if (minutes || time) {
 		minutes = (minutes < 10 && time) ? `0${minutes}` : minutes;
 		time += `${minutes}:`;
 	}
-
+	
 	if (!time) time = `${seconds.toFixed(0)}s`;
 	else time += (seconds < 10) ? `0${seconds}` : seconds;
-
+	
 	return time;
-};
+}
 
 module.exports.getFluxRadio = (name) => {
 	return {

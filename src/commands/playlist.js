@@ -299,11 +299,13 @@ module.exports = class Playlist extends Command {
 						channel: message.member.voice.channelID,
 						node: client.manager.idealNodes[0].id
 					}, { selfdeaf: true });
-				} else if (player.manager.voiceStates.get(message.guild.id).channel_id !== message.member.voice.channelID) {
-					if (!message.member.voice.channel.permissionsFor(client.user.id).has("CONNECT") || !message.member.voice.channel.permissionsFor(client.user.id).has("SPEAK"))
-						return message.channel.send("⚠ I don't have the `join permission` or `speak permission` in this channel !");
-
-					player.switchChannel(message.member.voice.channelID, { selfdeaf: true });
+				} else if (player) {
+					if (player.manager.voiceStates.get(message.guild.id).channel_id !== message.member.voice.channelID) {
+						if (!message.member.voice.channel.permissionsFor(client.user.id).has("CONNECT") || !message.member.voice.channel.permissionsFor(client.user.id).has("SPEAK"))
+							return message.channel.send("⚠ I don't have the `join permission` or `speak permission` in this channel !");
+						
+						player.switchChannel(message.member.voice.channelID, { selfdeaf: true });
+					}
 				}
 
 				playlist.tracks.map(async (_item) => {

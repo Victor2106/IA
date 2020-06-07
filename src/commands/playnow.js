@@ -1,5 +1,5 @@
 const Command = require("../structure/Command");
-const { addQueue, addLinkQueue, getRadio } = require("../utils/playerManager");
+const { addQueue, addLinkQueue, getRadio, getQueue } = require("../utils/playerManager");
 
 module.exports = class Playnow extends Command {
 	constructor() {
@@ -20,11 +20,14 @@ module.exports = class Playnow extends Command {
 		if (!client.radio.has(message.guild.id)) getRadio(client, message.guild.id, false);
 
 		const data = client.radio.get(message.guild.id);
-
+		const queue = getQueue(client.config.LAVALINK.QUEUES, message.guild.id);
+		
 		if (client.manager.players.get(message.guild.id)) {
 			if (data.status) {
 				client.manager.players.get(message.guild.id).stop();
 				data.status = false;
+			} else if (queue.length === 0) {
+				client.manager.players.get(message.guild.id).stop();
 			}
 		}
 
@@ -45,11 +48,13 @@ module.exports = class Playnow extends Command {
 					channel: message.member.voice.channelID,
 					node: client.manager.idealNodes[0].id
 				}, { selfdeaf: true });
-			} else if (player.manager.voiceStates.get(message.guild.id).channel_id !== message.member.voice.channelID) {
-				if (!message.member.voice.channel.permissionsFor(client.user.id).has("CONNECT") || !message.member.voice.channel.permissionsFor(client.user.id).has("SPEAK"))
-					return message.channel.send("⚠ I don't have the `join permission` or `speak permission` in this channel!");
-
-				player.switchChannel(message.member.voice.channelID, { selfdeaf: true });
+			} else if (player) {
+				if (player.manager.voiceStates.get(message.guild.id).channel_id !== message.member.voice.channelID) {
+					if (!message.member.voice.channel.permissionsFor(client.user.id).has("CONNECT") || !message.member.voice.channel.permissionsFor(client.user.id).has("SPEAK"))
+						return message.channel.send("⚠ I don't have the `join permission` or `speak permission` in this channel !");
+					
+					player.switchChannel(message.member.voice.channelID, { selfdeaf: true });
+				}
 			}
 
 			type.name === "ytlink" ? addLinkQueue(client, message, track) : addQueue(client, message, track, type);

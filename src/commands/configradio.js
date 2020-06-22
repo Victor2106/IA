@@ -19,7 +19,7 @@ module.exports = class Configradio extends Command {
 
 		if (!args.join(" ")) return message.channel.send("⚠ Please specify an argument !\n__Example:__ `" + client.config.bot.prefix + "configradio true nrj musique`");
 		if (!args[0]) return message.channel.send("⚠ Please specify true or false to enable or disable reconnection of the radio system!");
-		if (args[0] === "true") {
+		if (args[0].toLowerCase() === "true") {
 			if (!args[1]) return message.channel.send("⚠ Please specify a radio name!");
 			if (!args[2]) return message.channel.send("⚠ Please specify a channel name!");
 
@@ -32,7 +32,7 @@ module.exports = class Configradio extends Command {
 			try {
 				const data = client.guildsEntry.get(message.guild.id);
 
-				data.autoconfig.radio = args[0] === "true";
+				data.autoconfig.radio = args[0].toLowerCase() === "true";
 				data.autoconfig.link = radio;
 				data.autoconfig.channel = channel.id;
 

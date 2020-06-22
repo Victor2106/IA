@@ -75,7 +75,7 @@ module.exports = class Playlist extends Command {
 					title : "Playlists list",
 					color : client.config.opts.color,
 					thumbnail : {
-						url : message.author.displayAvatarURL
+						url : message.author.displayAvatarURL()
 					},
 					description : data.playlist.map((_item, i) => `[${(i + 1)}] - ${_item.title}`).join("\n"),
 					footer : {

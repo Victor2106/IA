@@ -12,7 +12,11 @@ module.exports = class CooldownManager {
 		if (this.get(id, command)) {
 			this.cooldown.size >= (this.client.options.messageCacheMaxSize / 2) ? this.cooldown.clear() : this.clear(id, command);
 			const member = this.cooldown.get(id);
-			member.push({ name: command, timestamp: Date.now() + wait });
+			try {
+				member.push({ name: command, timestamp: Date.now() + wait });
+			} catch (e) {
+				console.error("An error has occurred with member push: " + e);
+			}
 		}
 	}
 

@@ -6,7 +6,7 @@ module.exports = function (client, guild) {
 		console.log(`[guildEntry] Create configurations for ${guild.name} (ID: ${guild.id})`);
 	}
 	
-	const channel = client.channels.cache.find(c => c.id === "569305633967439873");
+	const channel = client.channels.cache.get("620614361529974809");
 	if(!channel) return;
 
 	channel.send({

@@ -1,12 +1,13 @@
 "use strict";
 
 module.exports = function (client, guild) {
+	
 	if (client.guildsEntry.has(guild.id)) {
 		client.guildsEntry.delete(guild.id);
 		console.log(`[guildEntry] Delete configurations for ${guild.name} (ID: ${guild.id})`);
 	}
 	
-	const channel = client.channels.cache.find(c => c.id === "569305633967439873");
+	const channel = client.channels.cache.get("620614361529974809");
 	if(!channel) return;
 
 	channel.send({

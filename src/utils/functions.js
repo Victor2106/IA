@@ -1,26 +1,17 @@
 "use strict";
 
-module.exports.convertTime = (seconds) => {
-	const days = Math.floor(seconds / 3600 / 24);
-	let hours = Math.floor(seconds / 3600);
-	const hour = Math.floor(hours / 6);
-	let minutes =  Math.floor((seconds - (Math.floor(seconds / 3600) * 3600)) / 60);
-	seconds = Math.trunc(seconds - (Math.floor(seconds / 3600) * 3600) - (minutes * 60));
+module.exports.convertTime = (timeInSeconds) => {
 	let time = "";
 	
-	if (days) {
-		time = `${days}d `;
-		hours = hour;
-		if (hours) time += `${hour}:`;
-	} else if (hours) time += `${hours}:`;
+	const days = Math.floor(timeInSeconds / 86400);
+	const hours = Math.floor((timeInSeconds - (Math.floor(timeInSeconds / 86400) * 86400)) / 3600);
+	const min = Math.floor((timeInSeconds - (Math.floor(timeInSeconds / 3600) * 3600)) / 60);
+	const seconds = Math.floor(timeInSeconds % 60)
 	
-	if (minutes || time) {
-		minutes = (minutes < 10 && time) ? `0${minutes}` : minutes;
-		time += `${minutes}:`;
-	}
-	
-	if (!time) time = `${seconds.toFixed(0)}s`;
-	else time += (seconds < 10) ? `0${seconds}` : seconds;
+	if (days > 0) time += days + ((days > 1) ? " days" : " day");
+	if (hours > 0) time += (days > 0) ? ", " + hours + ((hours > 1) ? " hours" :  " hour") : hours + ((hours > 1) ? " hours" :  " hour");
+	if (min > 0) time += (hours > 0 || days > 0) ? ", " + min + ((min > 1) ? " minutes" : " minute") : min + ((min > 1) ? " minutes" : " minute");
+	if (seconds > 0) time += (hours > 0 || days > 0 || min > 0) ? ", " + seconds + ((seconds > 1) ? " seconds" : " second") : seconds + ((seconds > 1) ? " seconds" : " second");
 	
 	return time;
 }

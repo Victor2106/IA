@@ -11,10 +11,10 @@ module.exports = class CooldownManager {
 
 		if (this.get(id, command)) {
 			this.cooldown.size >= (this.client.options.messageCacheMaxSize / 2) ? this.cooldown.clear() : this.clear(id, command);
-			const member = this.cooldown.get(id);
 			try {
+				const member = this.cooldown.get(id);
 				member.push({ name: command, timestamp: Date.now() + wait });
-			} catch (e) {
+			} catch(e) {
 				console.error("An error has occurred with member push: " + e);
 			}
 		}
@@ -26,13 +26,13 @@ module.exports = class CooldownManager {
 			if (hasCooldown !== undefined) {
 				if (hasCooldown && hasCooldown.timestamp >= Date.now()) {
 					this.clear(id, command);
-					return { status: false, message: Number(hasCooldown.timestamp - Date.now()) };
+					return { status: false, time: Number(hasCooldown.timestamp - Date.now()) };
 				} else {
 					this.clear(id, command);
 				}
 			}
 		}
-		return { status: true, message: null };
+		return { status: true, time: null };
 	}
 
 	clear(id) {

@@ -11,6 +11,9 @@ class Ia extends Client {
     constructor() {
         super({
             messageCacheMaxSize: 10,
+			messageCacheLifetime: 30,
+			messageSweepInterval: 1,
+			fetchAllMembers: false,
             disableEveryone: true
         });
         this.config = require("./config");

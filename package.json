@@ -2,16 +2,15 @@
   "name": "ia-v2",
   "version": "2.0.0",
   "description": "A new version of IA Music Bot",
-  "main": "index.js",
+  "main": "ia.js",
   "dependencies": {
     "@lavacord/discord.js": "0.0.7",
     "axios": "^0.19.2",
     "better-sqlite3": "^7.0.1",
-	"cheerio": "^1.0.0-rc.3",
+    "cheerio": "^1.0.0-rc.3",
     "discord.js": "^12.2.0",
     "enmap": "^5.2.4",
-    "moment": "^2.26.0",
-    "moment-duration-format": "^2.3.2"
+    "moment": "^2.26.0"
   },
   "devDependencies": {},
   "scripts": {

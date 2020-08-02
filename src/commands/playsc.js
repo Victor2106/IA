@@ -24,8 +24,7 @@ module.exports = class Playsc extends Command {
 		
 		if (client.manager.players.get(message.guild.id)) {
 			if (data.status) {
-				client.manager.players.get(message.guild.id).stop();
-				data.status = false;
+				client.manager.players.get(message.guild.id).stop().then(() => data.status = false);
 			} else if (queue.length === 0) {
 				client.manager.players.get(message.guild.id).stop();
 			}

@@ -14,8 +14,8 @@ module.exports = class Playscnow extends Command {
 	}
 
 	run(client, message, args) {
-		if(!message.member.voice.channel) return message.channel.send("⚠ You must be connected in a voice channel!");
-		if(!message.member.voice.channel.joinable || !message.member.voice.channel.speakable) return message.channel.send("⚠ I don't have the `join permission` or `speak permission` in this channel!");
+		if (!message.member.voice.channel) return message.channel.send("⚠ You must be connected in a voice channel!");
+		if (!message.member.voice.channel.joinable || !message.member.voice.channel.speakable) return message.channel.send("⚠ I don't have the `join permission` or `speak permission` in this channel!");
 
 		if (!client.radio.has(message.guild.id)) getRadio(client, message.guild.id, false);
 
@@ -24,8 +24,7 @@ module.exports = class Playscnow extends Command {
 		
 		if (client.manager.players.get(message.guild.id)) {
 			if (data.status) {
-				client.manager.players.get(message.guild.id).stop();
-				data.status = false;
+				client.manager.players.get(message.guild.id).stop().then(() => data.status = false);
 			} else if (queue.length === 0) {
 				client.manager.players.get(message.guild.id).stop();
 			}

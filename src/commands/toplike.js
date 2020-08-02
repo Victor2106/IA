@@ -30,7 +30,7 @@ module.exports = class Toplike extends Command {
 		if (data.like.length === 0) {
 			message.channel.send("You didn't like any music !");
 		} else {
-			if(data.like.length > 10) {
+			if (data.like.length > 10) {
 				let pages = Math.round(data.like.length / 10 + 0.49);
 				let page = 1;
 				let p0 = 0;
@@ -66,16 +66,16 @@ module.exports = class Toplike extends Command {
 							p0 = p0 - 10;
 							p1 = p1 - 10;
 
-							msg.edit({
-								embed: {
-									title: "Like list",
-									color: client.config.opts.color,
-									description: data.like.map((i) => `- **${i}**`).slice(p0, p1).join("\n"),
-									thumbnail: {
-										url: message.author.displayAvatarURL()
+							await msg.edit({
+								embed : {
+									title : "Like list",
+									color : client.config.opts.color,
+									description : data.like.map((i) => `- **${i}**`).slice(p0, p1).join("\n"),
+									thumbnail : {
+										url : message.author.displayAvatarURL()
 									},
-									footer: {
-										text: `Page ${page} of ${pages}`
+									footer : {
+										text : `Page ${page} of ${pages}`
 									}
 								}
 							});
@@ -89,16 +89,16 @@ module.exports = class Toplike extends Command {
 							p0 = p0 + 10;
 							p1 = p1 + 10;
 
-							msg.edit({
-								embed: {
-									title: "Like list",
-									color: client.config.opts.color,
-									description: data.like.map((i) => `- **${i}**`).slice(p0, p1).join("\n"),
-									thumbnail: {
-										url: message.author.displayAvatarURL()
+							await msg.edit({
+								embed : {
+									title : "Like list",
+									color : client.config.opts.color,
+									description : data.like.map((i) => `- **${i}**`).slice(p0, p1).join("\n"),
+									thumbnail : {
+										url : message.author.displayAvatarURL()
 									},
-									footer: {
-										text: `Page ${page} of ${pages}`
+									footer : {
+										text : `Page ${page} of ${pages}`
 									}
 								}
 							});

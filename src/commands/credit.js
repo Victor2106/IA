@@ -26,12 +26,9 @@ module.exports = class Credit extends Command {
 					name : "\\✨ **Contributors**",
 					value : "`Ota`, `PsyKo`, `ImFireGod`",
 					inline : true
-				}, {
-					name : "\\🛠 **Website Administrator**",
-					value : "`Samuel || TutoRapide`"
 				}],
 				thumbnail : {
-					url : client.user.avatarURL()
+					url : client.user.displayAvatarURL()
 				},
 				footer : {
 					text : "Avatar created by VI-JEy | Thanks for using IA !"

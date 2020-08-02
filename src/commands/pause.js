@@ -24,8 +24,7 @@ module.exports = class Pause extends Command {
 		if (player.paused) return message.channel.send("⚠ The music is already paused!");
 
 		try {
-			player.pause(true);
-			return message.channel.send("⏸ The music is now paused!");
+			player.pause(true).then(() => message.channel.send("⏸ The music is now paused!"));
 		} catch(exception) {
 			console.error(exception);
 			return message.channel.send("❌ An error has occurred!");

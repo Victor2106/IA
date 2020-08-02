@@ -24,8 +24,7 @@ module.exports = class Resume extends Command {
 		if(!player.paused) return message.channel.send("⚠ The music is already resumed!");
 
 		try {
-			player.pause(false);
-			return message.channel.send("▶ The music was summed up!");
+			player.pause(false).then(() => message.channel.send("▶ The music was summed up!"));
 		} catch (exception) {
 			console.error(exception);
 			return message.channel.send("❌ An error has occurred!");

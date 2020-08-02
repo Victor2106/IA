@@ -32,9 +32,8 @@ module.exports = class Seek extends Command {
 		else if (query <= 0 || query > (time / 1000)) return message.channel.send(`❌ Please, include a number between 1 and ${(time / 1000)}s to edit the position.`);
 
 		try {
-			player.seek((query * 1000));
-
-			return message.channel.send(`⏳ The position is now at \`${convertTime(query)} / ${convertTime((time / 1000))}\``);
+			player.seek((query * 1000)).then(() => message.channel.send(`⏳ The position is now at \`${convertTime(query)}\` / \`${convertTime((time / 1000))}\``));
+			
 		} catch (exception) {
 			console.error(exception);
 			return message.channel.send("❌ An error has occurred!");

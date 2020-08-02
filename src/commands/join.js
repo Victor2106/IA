@@ -17,7 +17,7 @@ module.exports = class Join extends Command {
 		if(!message.member.voice.channel.joinable || !message.member.voice.channel.speakable) return message.channel.send("⚠ I don't have the `join permission` or `speak permission` in this channel!");
 
 		const player = client.manager.players.get(message.guild.id);
-		if(player) return message.channel.send("⚠ The bot is already connected in a voice channel!");
+		if (player) return message.channel.send("⚠ The bot is already connected in a voice channel!");
 
 		try {
 			client.manager.join({

@@ -66,16 +66,16 @@ module.exports = class Topdislike extends Command {
 							p0 = p0 - 10;
 							p1 = p1 - 10;
 
-							msg.edit({
-								embed: {
-									title: "Dislike list",
-									color: client.config.opts.color,
-									description: data.dislike.map((i) => `- **${i}**`).slice(p0, p1).join("\n"),
-									thumbnail: {
-										url: message.author.displayAvatarURL()
+							await msg.edit({
+								embed : {
+									title : "Dislike list",
+									color : client.config.opts.color,
+									description : data.dislike.map((i) => `- **${i}**`).slice(p0, p1).join("\n"),
+									thumbnail : {
+										url : message.author.displayAvatarURL()
 									},
-									footer: {
-										text: `Page ${page} of ${pages}`
+									footer : {
+										text : `Page ${page} of ${pages}`
 									}
 								}
 							});
@@ -89,16 +89,16 @@ module.exports = class Topdislike extends Command {
 							p0 = p0 + 10;
 							p1 = p1 + 10;
 
-							msg.edit({
-								embed: {
-									title: "Dislike list",
-									color: client.config.opts.color,
-									description: data.dislike.map((i) => `- **${i}**`).slice(p0, p1).join("\n"),
-									thumbnail: {
-										url: message.author.displayAvatarURL()
+							await msg.edit({
+								embed : {
+									title : "Dislike list",
+									color : client.config.opts.color,
+									description : data.dislike.map((i) => `- **${i}**`).slice(p0, p1).join("\n"),
+									thumbnail : {
+										url : message.author.displayAvatarURL()
 									},
-									footer: {
-										text: `Page ${page} of ${pages}`
+									footer : {
+										text : `Page ${page} of ${pages}`
 									}
 								}
 							});

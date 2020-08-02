@@ -19,7 +19,7 @@ module.exports = class Dislike extends Command {
 		const player = client.manager.players.get(message.guild.id);
 		if (!player || !player.playing) return message.channel.send("❌ I'm not connected in a voice channel or I'm not playing!");
 
-		let queue = getQueue(client.config.LAVALINK.QUEUES, message.guild.id);
+		const queue = getQueue(client.config.LAVALINK.QUEUES, message.guild.id);
 		if (queue.length === 0) return message.channel.send("❌ The queue is empty!");
 
 		if (!client.usersEntry.has(message.author.id)) {

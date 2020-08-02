@@ -23,7 +23,7 @@ module.exports = class Skipto extends Command {
 		const data = client.radio.get(message.guild.id);
 		if (data.status) return message.channel.send("⚠ The radio is currently playing, the music queue is disabled!");
 
-		const choice = args.join(' ');
+		const choice = args.join(" ");
 		let queue = getQueue(client.config.LAVALINK.QUEUES, message.guild.id);
 
 

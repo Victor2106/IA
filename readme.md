@@ -30,20 +30,20 @@ IA is a bot music using discord.js 12 as well as Lavalink to reach a good
 !
 
 `` `` `` `` `
-use
+Use
 `` `` `` `` `
 
 * Download JDK (Java) 13 | [Download on Linux] (https://comptingforgeeks.com/install-oracle-java-13-on-ubuntu-debian/) | [Download on Windows] (https://www.oracle.com/java/technologies/javase-jdk13-downloads.html)
 * Download the latest version of [Lavalink] (https://ci.fredboat.com/viewlog.html?buildid=lastSuccessful&buildTypeId=Lavalink_Build&tab=artifacts&guest=1) in JAR and place the file in the `ingly / lavalink` folder
 * Create a dataset folder at the root, then a file `guilds` and` users` in this one
 
-** Windows **
+**Windows**
 * Open a terminal and make CD [Redirection of the Lavalink folder] `and then enter
 * If Java is not recognized, follow this [tutorial] (https://www.it-swarm.dev/en/java/java-nest-pas-reconnu-comme-une-commende-Interne-ou-externe / 1072478327 /) and just change the version by yours (13)
 * Type Java -Jar Lavalink.jar`
 * Then start the bot `Node IA --Shard`
 
-** Linux **
+**Linux**
 * Make CD [Redirection of the Lavalink folder] `and then enter
 * If you are using PM2: `PM2 Start Java --Name =" Lavalink "- -Jar Lavalink.jar`
 * Then start the bot `pm2 start ia.js - --shard`
